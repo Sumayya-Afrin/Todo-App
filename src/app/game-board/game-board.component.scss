@@ -1,0 +1,68 @@
+
+// // body {
+// //     margin: 0;
+// //     min-height: 100vh;
+// //     display: grid;
+// //     place-content: center;
+// //   }
+
+  .container {
+    height: 100vh;
+    display: flex;
+  
+    justify-content: center;
+    align-items: center;
+    //background: #E7ECEF;
+  }
+
+  .game-board
+  {
+    
+
+   height: 300px;
+   width: 300px;
+   place-content: center;
+ 
+  display: flex;
+  flex-wrap: wrap;
+  //background-color: black;
+  
+
+
+  
+  }
+
+  .reset-buttons{
+    margin-top: 3rem;
+   display: flex;
+   gap: 1rem;
+   
+  }
+
+  .set-buttons
+  {
+    background-color: darkblue;
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-radius: 5%;
+    cursor: pointer;
+  }
+
+  .set-buttons:hover{
+    background-color: black;
+  }
+
+
+
+  .box{
+    height: 100px;
+    width: 100px;
+    background: #6096BA;
+    font-size: 5rem;
+    color: red;
+    font-weight: 700;
+   
+  }

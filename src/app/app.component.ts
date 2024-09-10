@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { TodoFormComponent } from './todo-form/todo-form.component';
+import { GameBoardComponent } from './game-board/game-board.component';
 
 export interface ITodo {
   id: string;
@@ -11,7 +11,7 @@ export interface ITodo {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, GameBoardComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
