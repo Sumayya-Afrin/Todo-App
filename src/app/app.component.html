@@ -1,2 +1,6 @@
-<app-game-board></app-game-board>
+<div [attr.data-bs-theme]="darkModeService.darkModeSignal()">
+  <app-navbar />
+  <app-game-board></app-game-board>
+</div>
+
 <router-outlet />
