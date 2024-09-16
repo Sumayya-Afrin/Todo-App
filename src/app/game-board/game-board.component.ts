@@ -1,9 +1,22 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { Subscription, timer } from 'rxjs';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterLink } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
+import { MatBadgeModule } from '@angular/material/badge';
+
 @Component({
   selector: 'app-game-board',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatBadgeModule,
+    MatCardModule,
+    MatIconModule,
+  ],
   templateUrl: './game-board.component.html',
   styleUrl: './game-board.component.scss',
 })
@@ -17,6 +30,57 @@ export class GameBoardComponent {
   isGameOver: boolean = false;
   currentPlayer: string = 'X';
   winner: string = '';
+  initialTime: number = 30;
+  remainingTime: number = 30;
+  timerSubscription: Subscription | undefined;
+  isPaused: boolean = false;
+
+  // ngOnInit() {
+  //   this.startTimer();
+  // }
+
+  ngOnDestroy() {
+    this.stopTimer();
+  }
+
+  startTimer() {
+    //this.remainingTime = this.initialTime;
+    if (this.timerSubscription) {
+      this.timerSubscription.unsubscribe();
+    }
+    this.timerSubscription = timer(0, 1000).subscribe(() => {
+      if (!this.isPaused) {
+        if (this.remainingTime > 0) {
+          this.remainingTime--;
+        } else {
+          this.stopTimer();
+          this.handleTimeOut();
+        }
+      }
+    });
+  }
+
+  handleTimeOut() {
+    this.isGameOver = true;
+    this.winner = this.currentPlayer = 'X' ? 'O' : 'X';
+  }
+
+  pauseTimer() {
+    this.isPaused = true;
+  }
+
+  resumeTimer() {
+    if (this.isPaused) {
+      this.isPaused = false;
+    }
+  }
+
+  stopTimer() {
+    if (this.timerSubscription) {
+      this.timerSubscription.unsubscribe();
+      this.timerSubscription = undefined;
+    }
+  }
 
   makeMove(row: number, col: number) {
     if (this.board[row][col] === '' && !this.isGameOver) {
@@ -24,6 +88,7 @@ export class GameBoardComponent {
       console.log(this.board[row][col]);
       this.switchPlayer();
       this.checkWinner();
+      this.startTimer();
     }
   }
 
@@ -45,6 +110,12 @@ export class GameBoardComponent {
     ];
 
     this.winner = '';
+
+    this.remainingTime = this.initialTime;
+    if (this.timerSubscription) {
+      this.timerSubscription.unsubscribe();
+    }
+    this.startTimer();
   }
 
   checkWinner() {

@@ -1,3 +1,8 @@
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+/>
+
 <div class="container">
   <div class="game-board">
     @if(winner) { @if(winner=='Draw') {
@@ -5,6 +10,33 @@
     } @else {
     <h2>Congratulations ! {{ winner }} is the winner</h2>
     } }
+
+    <button mat-icon-button (click)="startTimer()">
+      <mat-icon>
+        <i class="fa-solid fa-play"></i>
+      </mat-icon>
+    </button>
+
+    <button mat-icon-button (click)="pauseTimer()">
+      <mat-icon>
+        <i class="fa-solid fa-pause"></i>
+      </mat-icon>
+    </button>
+
+    <button mat-icon-button (click)="resumeTimer()">
+      <mat-icon>
+        <i class="fa-solid fa-circle-play"></i>
+      </mat-icon>
+    </button>
+
+    <div>
+      @if(!isGameOver) {
+      <h3 style="color: green; font-weight: 400">
+        Time remaining for {{ currentPlayer }}: {{ remainingTime }} seconds
+      </h3>
+
+      }
+    </div>
     <ng-container *ngFor="let row of board; let i = index">
       <ng-container *ngFor="let cell of row; let j = index">
         <button class="box" (click)="makeMove(i, j)">
@@ -14,7 +46,6 @@
     </ng-container>
     <div class="reset-buttons">
       <button (click)="newGame()" class="set-buttons">Reset Game</button>
-      <button (click)="newGame()" class="set-buttons">New game</button>
     </div>
   </div>
 </div>
