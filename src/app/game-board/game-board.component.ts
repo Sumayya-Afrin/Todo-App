@@ -44,7 +44,7 @@ export class GameBoardComponent {
   }
 
   startTimer() {
-    //this.remainingTime = this.initialTime;
+    this.remainingTime = this.initialTime;
     if (this.timerSubscription) {
       this.timerSubscription.unsubscribe();
     }

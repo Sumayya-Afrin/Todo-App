@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatBadgeModule } from '@angular/material/badge';
+import { GamePageComponent } from './game-page/game-page.component';
 
 export interface ITodo {
   id: string;
@@ -26,6 +27,8 @@ export interface ITodo {
     MatBadgeModule,
     MatCardModule,
     MatIconModule,
+    GamePageComponent,
+    RouterLink,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

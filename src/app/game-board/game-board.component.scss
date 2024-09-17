@@ -9,9 +9,11 @@
   .container {
     height: 100vh;
     display: flex;
-  
+    
+  flex-direction: column;
     justify-content: center;
     align-items: center;
+ // background-color: yellow;
     //background: #E7ECEF;
   }
 
@@ -19,17 +21,28 @@
   {
     
 
-   height: 300px;
+   height: 230px;
    width: 300px;
    place-content: center;
- 
+
   display: flex;
   flex-wrap: wrap;
+  
   //background-color: black;
   
 
 
   
+  }
+
+  .control-buttons
+  {
+    height: 3rem;
+    width: 300px;
+    //background-color: orange;
+    align-items: center;
+   padding-left: 5rem;
+   color: maroon;
   }
 
   .reset-buttons{
@@ -65,4 +78,9 @@
     color: red;
     font-weight: 700;
    
+  }
+
+  .message
+  {
+    align-items: center;
   }

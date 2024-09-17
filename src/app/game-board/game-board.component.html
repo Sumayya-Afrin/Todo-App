@@ -5,47 +5,58 @@
 
 <div class="container">
   <div class="game-board">
-    @if(winner) { @if(winner=='Draw') {
-    <h2>It's a draw</h2>
-    } @else {
-    <h2>Congratulations ! {{ winner }} is the winner</h2>
-    } }
-
-    <button mat-icon-button (click)="startTimer()">
-      <mat-icon>
-        <i class="fa-solid fa-play"></i>
-      </mat-icon>
-    </button>
-
-    <button mat-icon-button (click)="pauseTimer()">
-      <mat-icon>
-        <i class="fa-solid fa-pause"></i>
-      </mat-icon>
-    </button>
-
-    <button mat-icon-button (click)="resumeTimer()">
-      <mat-icon>
-        <i class="fa-solid fa-circle-play"></i>
-      </mat-icon>
-    </button>
-
+    <div class="message">
+      @if(winner) { @if(winner=='Draw') {
+      <h2 style="text-align: center; margin: 0">It's a draw</h2>
+      } @else {
+      <h2 style="text-align: center; margin: 0">
+        Congratulations ! {{ winner }} is the winner
+      </h2>
+      } }
+    </div>
     <div>
       @if(!isGameOver) {
-      <h3 style="color: green; font-weight: 400">
-        Time remaining for {{ currentPlayer }}: {{ remainingTime }} seconds
+      <h3 style="color: green; font-weight: 500">
+        Time remaining for <b>{{ currentPlayer }}</b
+        >: {{ remainingTime }} seconds
       </h3>
 
       }
     </div>
     <ng-container *ngFor="let row of board; let i = index">
       <ng-container *ngFor="let cell of row; let j = index">
-        <button class="box" (click)="makeMove(i, j)">
+        <button
+          mat-stroked-button
+          class="box"
+          (click)="makeMove(i, j)"
+          style="border-color: black"
+        >
           {{ cell }}
         </button>
       </ng-container>
     </ng-container>
     <div class="reset-buttons">
       <button (click)="newGame()" class="set-buttons">Reset Game</button>
+    </div>
+
+    <div class="control-buttons">
+      <button mat-icon-button (click)="startTimer()">
+        <mat-icon>
+          <i class="fa-solid fa-play"></i>
+        </mat-icon>
+      </button>
+
+      <button mat-icon-button (click)="pauseTimer()">
+        <mat-icon>
+          <i class="fa-solid fa-pause"></i>
+        </mat-icon>
+      </button>
+
+      <button mat-icon-button (click)="resumeTimer()">
+        <mat-icon>
+          <i class="fa-solid fa-circle-play"></i>
+        </mat-icon>
+      </button>
     </div>
   </div>
 </div>
