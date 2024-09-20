@@ -4,6 +4,10 @@ import { GamePageComponent } from './game-page/game-page.component';
 
 export const routes: Routes = [
   {
+    path: '',
+    component: GamePageComponent,
+  },
+  {
     path: 'game-board',
     component: GameBoardComponent,
   },
